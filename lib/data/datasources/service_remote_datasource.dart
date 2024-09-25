@@ -8,8 +8,7 @@ class ServiceRemoteDataSource {
 
   Future<List<Map<String, dynamic>>> getServices() async {
     try {
-      final response =
-          await _supabaseClient.from('services').select().execute();
+      final response = await _supabaseClient.from('services');
 
       log('Supabase response: ${response.data}');
 

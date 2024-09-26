@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mt_hancod/core/consts/color_const.dart';
-import 'package:mt_hancod/models/service_model.dart';
+import 'package:mt_hancod/models/service_detail_model.dart';
 
 class SearviceItemWidget extends StatelessWidget {
   const SearviceItemWidget({
@@ -10,7 +10,7 @@ class SearviceItemWidget extends StatelessWidget {
     required this.service,
   });
 
-  final ServiceModel service;
+  final ServiceDetailModel service;
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +66,7 @@ class SearviceItemWidget extends StatelessWidget {
                   ),
                   SizedBox(width: 5.w),
                   Text(
-                    '(${service.rating}/${service.ratingOutOf}) ${service.totalOrders} Orders',
+                    '(${service.rating}/5) ${service.totalServicesCompleted} Orders',
                     style: TextStyle(
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w400,
@@ -77,7 +77,7 @@ class SearviceItemWidget extends StatelessWidget {
               ),
               SizedBox(height: 5.h),
               Text(
-                service.serviceName,
+                service.name,
                 style: TextStyle(
                   fontSize: 15.sp,
                   color: ColorConst.kBlack,
@@ -95,7 +95,7 @@ class SearviceItemWidget extends StatelessWidget {
               ),
               SizedBox(height: 5.h),
               Text(
-                '₹ ${service.servicePrice}',
+                '₹ ${service.cost}',
                 style: TextStyle(
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w700,

@@ -24,25 +24,8 @@ class MainScreen extends StatelessWidget {
           stateManagement: true,
           hideNavigationBarWhenKeyboardAppears: true,
           padding: const EdgeInsets.only(top: 8),
-          //   backgroundColor: Colors.grey.shade900,
-          // isVisible: true,
-          // animationSettings: const NavBarAnimationSettings(
-          //   navBarItemAnimation: ItemAnimationSettings(
-          //     // Navigation Bar's items animation properties.
-          //     duration: Duration(milliseconds: 400),
-          //     curve: Curves.ease,
-          //   ),
-          //   screenTransitionAnimation: ScreenTransitionAnimationSettings(
-          //     // Screen transition animation on change of selected tab.
-          //     animateTabTransition: true,
-          //     duration: Duration(milliseconds: 200),
-          //     screenTransitionAnimationType:
-          //         ScreenTransitionAnimationType.fadeIn,
-          //   ),
-          // ),
           confineToSafeArea: true,
           navBarHeight: kBottomNavigationBarHeight,
-          // navBarStyle: _navBarStyle, // Choose the nav bar style with this property
         )));
   }
 
@@ -59,20 +42,11 @@ class MainScreen extends StatelessWidget {
       PersistentBottomNavBarItem(
         icon: SvgPicture.asset(
           "assets/svgs/Home.svg",
-          // color: ColorConst.kGray,
         ),
         title: ("Home"),
         textStyle: const TextStyle(color: ColorConst.kBlack, fontSize: 12),
         activeColorPrimary: Colors.green,
         inactiveColorPrimary: CupertinoColors.systemGrey,
-        // scrollController: _scrollController1,
-        // routeAndNavigatorSettings: RouteAndNavigatorSettings(
-        //     initialRoute: "/",
-        //     routes: {
-        //     "/first": (final context) => const MainScreen2(),
-        //     "/second": (final context) => const MainScreen3(),
-        //     },
-        // ),
       ),
       PersistentBottomNavBarItem(
         icon: SvgPicture.asset(
@@ -81,14 +55,6 @@ class MainScreen extends StatelessWidget {
         title: ("Bookings"),
         activeColorPrimary: Colors.green,
         inactiveColorPrimary: CupertinoColors.systemGrey,
-        // scrollController: _scrollController2,
-        // routeAndNavigatorSettings: RouteAndNavigatorSettings(
-        //     initialRoute: "/",
-        // routes: {
-        // "/first": (final context) => const MainScreen2(),
-        // "/second": (final context) => const MainScreen3(),
-        // },
-        //  ),
       ),
       PersistentBottomNavBarItem(
         icon: SvgPicture.asset(
@@ -97,14 +63,6 @@ class MainScreen extends StatelessWidget {
         title: ("Accounts"),
         activeColorPrimary: Colors.green,
         inactiveColorPrimary: CupertinoColors.systemGrey,
-        // scrollController: _scrollController2,
-        // routeAndNavigatorSettings: RouteAndNavigatorSettings(
-        //     initialRoute: "/",
-        // routes: {
-        // "/first": (final context) => const MainScreen2(),
-        // "/second": (final context) => const MainScreen3(),
-        // },
-        //  ),
       ),
     ];
   }

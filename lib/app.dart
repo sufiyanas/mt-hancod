@@ -1,7 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mt_hancod/presenentation/searvice_item/searvice_item_screen.dart';
+import 'package:mt_hancod/presenentation/main_screen/main_screen.dart';
+import 'package:mt_hancod/presenentation/searvice_item/service_details_screen.dart';
 
 import 'flavors.dart';
 
@@ -22,7 +23,7 @@ class App extends StatelessWidget {
             textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
           ),
           home: _flavorBanner(
-            child: ServiceItemScreen(),
+            child: const MainScreen(),
             show: kDebugMode,
           ),
         );
@@ -40,7 +41,7 @@ class App extends StatelessWidget {
               location: BannerLocation.topStart,
               message: F.name,
               color: Colors.green.withOpacity(0.6),
-              textStyle: TextStyle(
+              textStyle: const TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: 12.0,
                   letterSpacing: 1.0),

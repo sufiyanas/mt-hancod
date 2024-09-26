@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mt_hancod/app.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -15,9 +16,9 @@ class HomeScreen extends StatelessWidget {
               DiscountBanner(),
               Categories(),
               SpecialOffers(),
-              SizedBox(height: 20),
+              // SizedBox(height: 20),
               PopularProducts(),
-              SizedBox(height: 20),
+              // SizedBox(height: 20),
             ],
           ),
         ),
@@ -160,6 +161,7 @@ class DiscountBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 150,
       width: double.infinity,
       margin: const EdgeInsets.all(20),
       padding: const EdgeInsets.symmetric(
@@ -169,20 +171,11 @@ class DiscountBanner extends StatelessWidget {
       decoration: BoxDecoration(
         color: const Color(0xFF4A3298),
         borderRadius: BorderRadius.circular(20),
-      ),
-      child: const Text.rich(
-        TextSpan(
-          style: TextStyle(color: Colors.white),
-          children: [
-            TextSpan(text: "A Summer Surpise\n"),
-            TextSpan(
-              text: "Cashback 20%",
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
+        image: DecorationImage(
+          fit: BoxFit.cover,
+          image: AssetImage(
+            'assets/pngs/Promo Advertising.png',
+          ),
         ),
       ),
     );
@@ -412,7 +405,7 @@ class PopularProducts extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: SectionTitle(
-            title: "Popular Products",
+            title: "Cleaning Services",
             press: () {},
           ),
         ),

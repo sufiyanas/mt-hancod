@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mt_hancod/core/consts/color_const.dart';
-import 'package:mt_hancod/domain/entities/service.dart';
+import 'package:mt_hancod/models/service_model.dart';
 
 class SearviceItemWidget extends StatelessWidget {
   const SearviceItemWidget({
@@ -10,7 +10,7 @@ class SearviceItemWidget extends StatelessWidget {
     required this.service,
   });
 
-  final Service service;
+  final ServiceModel service;
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +66,7 @@ class SearviceItemWidget extends StatelessWidget {
                   ),
                   SizedBox(width: 5.w),
                   Text(
-                    '(4.2/5) 23 Orders',
+                    '(${service.rating}/${service.ratingOutOf}) ${service.totalOrders} Orders',
                     style: TextStyle(
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w400,
@@ -75,14 +75,32 @@ class SearviceItemWidget extends StatelessWidget {
                   ),
                 ],
               ),
+              SizedBox(height: 5.h),
               Text(
-                'Bathroom Cleaning',
-                style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w700),
+                service.serviceName,
+                style: TextStyle(
+                  fontSize: 15.sp,
+                  color: ColorConst.kBlack,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
-              const Text('60 Minutes'),
+              SizedBox(height: 5.h),
               Text(
-                '₹ 499.00',
-                style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w700),
+                '${service.duration} Minutes',
+                style: TextStyle(
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w400,
+                  color: ColorConst.kGray,
+                ),
+              ),
+              SizedBox(height: 5.h),
+              Text(
+                '₹ ${service.servicePrice}',
+                style: TextStyle(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w700,
+                  color: ColorConst.kBlack,
+                ),
               ),
             ],
           ),
@@ -110,7 +128,7 @@ class SearviceItemWidget extends StatelessWidget {
                   ),
                 ),
                 SizedBox(width: 5.w),
-                Icon(
+                const Icon(
                   Icons.add,
                   color: ColorConst.kWhite,
                 ),

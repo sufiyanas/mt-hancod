@@ -1,0 +1,10 @@
+flavors:
+  development:
+    app:
+      name: "MT Hancod Dev"
+
+  production:
+    app:
+      name: "MT Hancod"
+
+ide: idea

@@ -1,34 +1,20 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mt_hancod/flavors.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'presenentation/searvice_item/searvice_item_screen.dart';
+import 'app.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
+FutureOr<void> main() async {
+  // runApp(const App());
+  F.appFlavor = Flavor.development;
   await Supabase.initialize(
-    url: 'YOUR_SUPABASE_URL',
-    anonKey: 'YOUR_SUPABASE_ANON_KEY',
+    url: F.supabaseUrl,
+    anonKey: F.supabaseAnonKey,
   );
-
   runApp(
     const ProviderScope(
-      child: MyApp(),
+      child: App(),
     ),
   );
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Your App Name',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const ServiceItemScreen(),
-    );
-  }
 }

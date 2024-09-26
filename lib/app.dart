@@ -1,8 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mt_hancod/presenentation/main_screen/main_screen.dart';
-import 'package:mt_hancod/presenentation/searvice_item/service_details_screen.dart';
+import 'package:mt_hancod/feature/main_screen/main_screen.dart';
 
 import 'flavors.dart';
 

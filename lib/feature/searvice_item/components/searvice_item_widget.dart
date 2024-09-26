@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mt_hancod/core/consts/color_const.dart';
-import 'package:mt_hancod/models/service_detail_model.dart';
+import 'package:mt_hancod/feature/searvice_item/data/model/service_detail_model.dart';
 
 class SearviceItemWidget extends StatelessWidget {
   const SearviceItemWidget({

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mt_hancod/presenentation/auth/widgets/connect_with_google_buton.dart';
-import 'package:mt_hancod/presenentation/auth/widgets/custom_green_button.dart';
-import 'package:mt_hancod/presenentation/auth/widgets/logo_.dart';
+import 'package:mt_hancod/feature/auth/widgets/connect_with_google_buton.dart';
+import 'package:mt_hancod/feature/auth/widgets/custom_green_button.dart';
+import 'package:mt_hancod/feature/auth/widgets/logo_.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({super.key});

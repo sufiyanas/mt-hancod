@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mt_hancod/core/consts/color_const.dart';
-import 'package:mt_hancod/presenentation/accounts/account_screen.dart';
-import 'package:mt_hancod/presenentation/booking/booking_screen.dart';
-import 'package:mt_hancod/presenentation/home/home_screen.dart';
+import 'package:mt_hancod/feature/accounts/account_screen.dart';
+import 'package:mt_hancod/feature/booking/booking_screen.dart';
+import 'package:mt_hancod/feature/home/home_screen.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class MainScreen extends StatelessWidget {

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mt_hancod/core/consts/color_const.dart';
-import 'package:mt_hancod/presenentation/widget/appbar_widget.dart';
+import 'package:mt_hancod/feature/widget/appbar_widget.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});

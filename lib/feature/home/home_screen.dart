@@ -1,27 +1,129 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mt_hancod/app.dart';
+import 'package:mt_hancod/core/consts/color_const.dart';
+import 'package:mt_hancod/feature/searvice_item/view/providers/service_provider.dart';
+import 'package:mt_hancod/feature/searvice_item/view/service_details_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    _loadServices();
+  }
+
+  Future<void> _loadServices() async {
+    await ref.read(serviceNotifierProvider.notifier).build();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    final servicesAsyncValue = ref.watch(serviceNotifierProvider);
+
+    return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(vertical: 16),
+          padding: const EdgeInsets.symmetric(vertical: 16),
           child: Column(
             children: [
-              HomeHeader(),
-              DiscountBanner(),
-              Categories(),
-              SpecialOffers(),
-              // SizedBox(height: 20),
-              PopularProducts(),
-              // SizedBox(height: 20),
+              const HomeHeader(),
+              const DiscountBanner(),
+              const Categories(),
+              HeadingRowWdget(onTap: () {}),
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: SizedBox(
+                  height: 200.h,
+                  child: servicesAsyncValue.when(
+                    loading: () =>
+                        const Center(child: CircularProgressIndicator()),
+                    error: (error, stack) =>
+                        Center(child: Text('Error: $error')),
+                    data: (services) {
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: services.length,
+                        itemBuilder: (context, index) {
+                          final service = services[index];
+                          return PopularProducts(
+                            imageUrl: 'assets/pngs/cleaning_image_full.jpeg',
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ServiceDetailsScreen(
+                                      serviceId: service.id.toString()),
+                                ),
+                              );
+                            },
+                            text: service.title,
+                          );
+                        },
+                      );
+                    },
+                  ),
+                ),
+              ),
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class HeadingRowWdget extends StatelessWidget {
+  const HeadingRowWdget({
+    super.key,
+    required this.onTap,
+  });
+  final VoidCallback onTap;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(20),
+      child: Row(
+        children: [
+          Text(
+            'Cleaning Services',
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: ColorConst.kBlack,
+            ),
+          ),
+          const Spacer(),
+          GestureDetector(
+            onTap: onTap,
+            child: Row(
+              children: [
+                Text(
+                  'See All',
+                  style: const TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                    color: ColorConst.kGreen,
+                  ),
+                ),
+                SizedBox(width: 5.w),
+                Icon(
+                  Icons.navigate_next,
+                  size: 20.r,
+                  color: ColorConst.kGreen,
+                )
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -171,7 +273,7 @@ class DiscountBanner extends StatelessWidget {
       decoration: BoxDecoration(
         color: const Color(0xFF4A3298),
         borderRadius: BorderRadius.circular(20),
-        image: DecorationImage(
+        image: const DecorationImage(
           fit: BoxFit.cover,
           image: AssetImage(
             'assets/pngs/Promo Advertising.png',
@@ -396,45 +498,45 @@ class SectionTitle extends StatelessWidget {
 }
 
 class PopularProducts extends StatelessWidget {
-  const PopularProducts({super.key});
+  const PopularProducts(
+      {super.key,
+      required this.imageUrl,
+      required this.onTap,
+      required this.text});
+
+  final String imageUrl;
+  final VoidCallback onTap;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: SectionTitle(
-            title: "Cleaning Services",
-            press: () {},
-          ),
-        ),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: [
-              ...List.generate(
-                demoProducts.length,
-                (index) {
-                  if (demoProducts[index].isPopular) {
-                    return Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: ProductCard(
-                        product: demoProducts[index],
-                        onPress: () {},
-                      ),
-                    );
-                  }
-
-                  return const SizedBox
-                      .shrink(); // here by default width and height is 0
-                },
+    return GestureDetector(
+      onTap: onTap,
+      child: Padding(
+        padding: EdgeInsets.only(right: 20.w),
+        child: Column(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(15.r),
+              child: Image.asset(
+                imageUrl,
+                width: 139.w,
+                height: 154.h,
+                fit: BoxFit.cover,
               ),
-              const SizedBox(width: 20),
-            ],
-          ),
-        )
-      ],
+            ),
+            SizedBox(height: 10.h),
+            Text(
+              text,
+              style: TextStyle(
+                color: ColorConst.kBlack,
+                fontSize: 14.sp,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

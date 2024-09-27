@@ -19,7 +19,7 @@ class App extends StatelessWidget {
           title: F.title,
           theme: ThemeData(
             primarySwatch: Colors.blue,
-            textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
+            // textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
           ),
           home: _flavorBanner(
             child: const MainScreen(),

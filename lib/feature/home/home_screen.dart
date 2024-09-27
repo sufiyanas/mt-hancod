@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mt_hancod/core/consts/color_const.dart';
+import 'package:mt_hancod/feature/cart/cart_screen.dart';
 import 'package:mt_hancod/feature/searvice_item/view/providers/service_provider.dart';
 import 'package:mt_hancod/feature/searvice_item/view/service_details_screen.dart';
 
@@ -146,7 +147,10 @@ class HomeHeader extends StatelessWidget {
           IconBtnWithCounter(
             // numOfitem: 3,
             svgSrc: cartIcon,
-            press: () {},
+            press: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const CartScreen()));
+            },
           ),
           const SizedBox(width: 8),
           IconBtnWithCounter(

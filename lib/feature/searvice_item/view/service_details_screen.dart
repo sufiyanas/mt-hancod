@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:mt_hancod/core/consts/color_const.dart';
 import 'package:mt_hancod/feature/searvice_item/data/model/service_detail_model.dart';
 import 'package:mt_hancod/feature/searvice_item/data/model/service_subset_model.dart';
 import 'package:mt_hancod/feature/searvice_item/view/providers/service_provider.dart';
@@ -44,7 +47,7 @@ class _ServiceDetailsScreenState extends ConsumerState<ServiceDetailsScreen>
         _loadServiceDetails(subsets[0].id.toString());
       }
     } catch (e) {
-      print('Error loading subsets: $e');
+      debugPrint('Error loading subsets: $e');
     }
   }
 
@@ -56,8 +59,7 @@ class _ServiceDetailsScreenState extends ConsumerState<ServiceDetailsScreen>
         _details = details;
       });
     } catch (e) {
-      // Handle error
-      print('Error loading service details: $e');
+      debugPrint('Error loading service details: $e');
     }
   }
 
@@ -65,12 +67,50 @@ class _ServiceDetailsScreenState extends ConsumerState<ServiceDetailsScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Service Details'),
-        bottom: _subsets.isEmpty
-            ? null
-            : TabBar(
+        leading: Padding(
+          padding: EdgeInsets.only(left: 10.w),
+          child: SvgPicture.asset(
+            "assets/svgs/Back-Navs.svg",
+            width: 24.w,
+            height: 24.h,
+          ),
+        ),
+        title: Text(
+          'Service Details',
+          style: TextStyle(
+            fontSize: 16.sp,
+          ),
+        ),
+        centerTitle: false,
+      ),
+      body: Column(
+        children: [
+          if (_subsets.isNotEmpty)
+            Container(
+              decoration: const BoxDecoration(
+                color: ColorConst.klightGreen,
+              ),
+              child: TabBar(
+                labelStyle: TextStyle(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w700,
+                ),
+                unselectedLabelStyle: TextStyle(
+                  color: ColorConst.kBlack,
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w700,
+                ),
                 isScrollable: true,
                 controller: _tabController,
+                indicator: BoxDecoration(
+                  gradient: ColorConst.kPrimaryGradient,
+                  color: ColorConst.klightGreen,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                labelColor: Colors.white,
+                unselectedLabelColor: ColorConst.kBlack,
+                indicatorPadding: EdgeInsets.all(5),
+                indicatorSize: TabBarIndicatorSize.tab,
                 tabs: _subsets
                     .map((subset) => Tab(text: subset.subsetTitle))
                     .toList(),
@@ -81,19 +121,23 @@ class _ServiceDetailsScreenState extends ConsumerState<ServiceDetailsScreen>
                   _loadServiceDetails(_subsets[index].id.toString());
                 },
               ),
-      ),
-      body: _subsets.isEmpty
-          ? const Center(child: CircularProgressIndicator())
-          : TabBarView(
-              controller: _tabController,
-              children: _subsets.map((subset) {
-                if (_subsets.indexOf(subset) == _selectedSubsetIndex) {
-                  return _buildSubsetDetails();
-                } else {
-                  return const Center(child: CircularProgressIndicator());
-                }
-              }).toList(),
             ),
+          Expanded(
+            child: _subsets.isEmpty
+                ? const Center(child: CircularProgressIndicator())
+                : TabBarView(
+                    controller: _tabController,
+                    children: _subsets.map((subset) {
+                      if (_subsets.indexOf(subset) == _selectedSubsetIndex) {
+                        return _buildSubsetDetails();
+                      } else {
+                        return const Center(child: CircularProgressIndicator());
+                      }
+                    }).toList(),
+                  ),
+          ),
+        ],
+      ),
     );
   }
 

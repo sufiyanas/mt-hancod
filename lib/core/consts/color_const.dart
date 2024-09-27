@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 class ColorConst {
   static const Color kGreen = Color(0xFF4CAF50);
+  static const Color klightGreen = Color.fromRGBO(215, 255, 234, 1);
+
   static const Color kRed = Color(0xFFF44336);
   static const Color kBlue = Color(0xFF2196F3);
   static const Color kYellow = Color(0xFFFFEB3B);

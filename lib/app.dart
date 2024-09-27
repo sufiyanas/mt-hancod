@@ -17,8 +17,16 @@ class App extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           title: F.title,
+          debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            primarySwatch: Colors.blue,
+            appBarTheme: AppBarTheme(
+              backgroundColor: Colors.white,
+              elevation: 0,
+              iconTheme: IconThemeData(
+                color: Colors.black,
+              ),
+            ),
+            scaffoldBackgroundColor: Colors.white,
             // textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
           ),
           home: _flavorBanner(
